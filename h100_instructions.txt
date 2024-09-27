@@ -19,7 +19,7 @@ gh ssh-key add ~/.ssh/id_ed25519.pub --type authentication
 
 cd workspace
 ssh-keyscan github.com >> ~/.ssh/known_hosts
-git clone git@github.com:bergen/hyena-rna.git
+git clone git@github.com:bergen/rna-llm-wenhao.git
 
 cd hyena-rna
 python -m pip install --upgrade pip
