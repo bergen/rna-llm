@@ -34,24 +34,12 @@ pip install flash-attn --no-build-isolation
 pip install gdown
 pip install --upgrade gdown
 # All Weights
-# gdown https://drive.google.com/drive/folders/1bAbTQ9HNA-dNAp-Yfu689tIrUg9gz6HF --folder
-
-# Threshold 1 pooling finetuning Weights
-gdown https://drive.google.com/drive/folders/128nit7_y-0FJO3EsXKMiuIOnjCwZtfHi --folder
-
-# Finetuning data
-# gdown https://drive.google.com/drive/folders/1tCS8mj9pFUxa6UpCRIg6dThVLFraTVwr --folder
-
-# Prediction data
-gdown https://drive.google.com/drive/folders/1MDfu0Xxw-4QmEXegyM8s010Ew2Zds7r4 --folder
+gdown https://drive.google.com/drive/folders/1bAbTQ9HNA-dNAp-Yfu689tIrUg9gz6HF --folder
 
 mkdir -p data/mrna
 
-# mv Finetuning_Data data/mrna/
-mv Prediction_Data data/mrna
 
-# mkdir checkpoints
-# mv Weights checkpoints
+mkdir checkpoints
+mv Weights checkpoints
 
-mkdir -p checkpoints/Weights/Finetuning/mouse_cortex_finetuning/threshold_1
-mv mode_pool checkpoints/Weights/Finetuning/mouse_cortex_finetuning/threshold_1
+
