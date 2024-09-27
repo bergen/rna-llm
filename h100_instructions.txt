@@ -1,0 +1,57 @@
+# install github cli
+type -p curl >/dev/null || (apt update && apt install curl -y)
+curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+&& chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+&& apt update \
+&& apt install gh -y
+
+token=#insert github token here
+echo $token > token.txt
+gh auth login --with-token < token.txt
+
+email="bergen.leon@gmail.com"
+ssh-keygen -t ed25519 -C $email -N "" -f ~/.ssh/id_ed25519
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+gh ssh-key add ~/.ssh/id_ed25519.pub --type signing
+gh ssh-key add ~/.ssh/id_ed25519.pub --type authentication
+
+cd workspace
+ssh-keyscan github.com >> ~/.ssh/known_hosts
+git clone git@github.com:bergen/hyena-rna.git
+
+cd hyena-rna
+python -m pip install --upgrade pip
+apt-get update
+apt-get install -y pkg-config libcairo2-dev
+pip install -i https://pypi.org/simple -r requirements_h100.txt
+pip install flash-attn --no-build-isolation
+
+
+
+
+pip install gdown
+pip install --upgrade gdown
+# All Weights
+# gdown https://drive.google.com/drive/folders/1bAbTQ9HNA-dNAp-Yfu689tIrUg9gz6HF --folder
+
+# Threshold 1 pooling finetuning Weights
+gdown https://drive.google.com/drive/folders/128nit7_y-0FJO3EsXKMiuIOnjCwZtfHi --folder
+
+# Finetuning data
+# gdown https://drive.google.com/drive/folders/1tCS8mj9pFUxa6UpCRIg6dThVLFraTVwr --folder
+
+# Prediction data
+gdown https://drive.google.com/drive/folders/1MDfu0Xxw-4QmEXegyM8s010Ew2Zds7r4 --folder
+
+mkdir -p data/mrna
+
+# mv Finetuning_Data data/mrna/
+mv Prediction_Data data/mrna
+
+# mkdir checkpoints
+# mv Weights checkpoints
+
+mkdir -p checkpoints/Weights/Finetuning/mouse_cortex_finetuning/threshold_1
+mv mode_pool checkpoints/Weights/Finetuning/mouse_cortex_finetuning/threshold_1
