@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export HUGGINGFACE_TOKEN=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
+export HUGGINGFACE_TOKEN=
 #huggingface-cli login --token $HUGGINGFACE_TOKEN
 
 # Get GPU models and total memory

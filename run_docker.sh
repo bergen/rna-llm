@@ -1,4 +1,4 @@
-export WANDB_API_KEY=f32a7be8c3345c866b26e490afad47e206585b50
+export WANDB_API_KEY=
 docker run --privileged --gpus all --rm \
 -e WANDB_API_KEY=${WANDB_API_KEY} \
 -v /home/user/hyena-rna:/workspace \
