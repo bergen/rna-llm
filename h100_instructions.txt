@@ -10,7 +10,7 @@ token=#insert github token here
 echo $token > token.txt
 gh auth login --with-token < token.txt
 
-email="bergen.leon@gmail.com"
+email=
 ssh-keygen -t ed25519 -C $email -N "" -f ~/.ssh/id_ed25519
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
